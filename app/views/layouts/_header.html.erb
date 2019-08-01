@@ -21,8 +21,8 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <% if user_signed_in? %>
-              <a class="dropdown-item" href="/users/edit"><%= current_user.name %>アカウントの編集</a>
-              <a class="dropdown-item" href="#"><%= current_user.name %>メニューの編集</a>
+              <a class="dropdown-item" href="/users/edit">アカウントの編集</a>
+              <a class="dropdown-item" href="/menus/new">メニューの登録</a>
             <% else %>
               <a class="dropdown-item" href="/users/sign_up">新規登録</a>
               <a class="dropdown-item" href="/users/sign_in">ログイン</a>

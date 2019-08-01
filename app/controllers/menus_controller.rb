@@ -21,6 +21,25 @@ class MenusController < ApplicationController
   def edit
   end
 
+  def batch_registration
+  end
+
+  def batch_create
+    params.permit!
+    params['menus'].keys.each do |id|
+      for eat_time in 1..3
+        @menu = Menu.new
+        @menu.menu1 = params['menus'][id][eat_time.to_s]["menu1"]
+        @menu.menu2 = params['menus'][id][eat_time.to_s]["menu2"]
+        @menu.date  = (Date.today - (Date.today.wday + 1)) - (7 + id.to_i) # 先週の月曜日
+        @menu.user_id = current_user.id
+        @menu.time = eat_time
+        @menu.save
+      end
+    end
+    redirect_to(menus_url)
+  end
+
   # POST /menus
   # POST /menus.json
   def create
@@ -62,13 +81,13 @@ class MenusController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_menu
-      @menu = Menu.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_menu
+    @menu = Menu.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def menu_params
-      params.require(:menu).permit(:menu1, :menu2, :date, :time, :user_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def menu_params
+    params.require(:menu).permit(:menu1, :menu2, :date, :time, :user_id)
+  end
 end
