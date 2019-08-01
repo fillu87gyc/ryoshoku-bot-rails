@@ -26,18 +26,25 @@ class MenusController < ApplicationController
 
   def batch_create
     params.permit!
-    params['menus'].keys.each do |id|
-      for eat_time in 1..3
-        @menu = Menu.new
-        @menu.menu1 = params['menus'][id][eat_time.to_s]["menu1"]
-        @menu.menu2 = params['menus'][id][eat_time.to_s]["menu2"]
-        @menu.date  = (Date.today - (Date.today.wday + 1)) - (7 + id.to_i) # 先週の月曜日
-        @menu.user_id = current_user.id
-        @menu.time = eat_time
-        @menu.save
+    date = params["date"].to_date
+    if date.wday != 1
+      flash.now[:alert] = '月曜日の日付を入力してね'
+      render :action => :batch_registration
+    else
+      for id in 1..7
+        for eat_time in 1..3
+          @menu = Menu.new
+          @menu.menu1 = params['menus'][id.to_s][eat_time.to_s]["menu1"]
+          @menu.menu2 = params['menus'][id.to_s][eat_time.to_s]["menu2"]
+          @menu.date  = date
+          @menu.user_id = current_user.id
+          @menu.time = eat_time
+          @menu.save
+        end
+        date+=1
       end
+      redirect_to(menus_url)
     end
-    redirect_to(menus_url)
   end
 
   # POST /menus

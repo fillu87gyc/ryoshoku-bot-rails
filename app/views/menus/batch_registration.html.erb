@@ -42,8 +42,13 @@
           <td><input type="text" name="menus[<%= m %>][3][menu2]" value="3" /></td>
         <% end %>
       </tr>
-
     </table>
+    <div class="field">
+      <p>
+      月曜日の日付を入力 
+      <%= date_field_tag 'date','', use_month_numbers: true, start_year: 2019  %>
+      </p>
+    </div>
 
     <div class="actions">
       <%= submit_tag %>
