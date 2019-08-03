@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'users/index'
+  get 'users/show'
   get 'menus/batch' => 'menus#batch_registration'
   post 'menus/batch' => 'menus#batch_create'
   resources :menus

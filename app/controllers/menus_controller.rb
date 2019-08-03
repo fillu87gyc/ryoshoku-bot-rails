@@ -1,4 +1,5 @@
 class MenusController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
 
   # GET /menus
@@ -26,36 +27,14 @@ class MenusController < ApplicationController
 
   def batch_create
     params.permit!
-    date = params["date"].to_date
+    date = params['date'].to_date
     if date.wday != 1
       flash.now[:alert] = '月曜日の日付を入力してね'
-      render :action => :batch_registration
+      render :batch_registration
     else
-      suc = true
-      al ='重複しているデータが存在します<br/><pre>' 
-      for id in 1..7
-        for eat_time in 1..3
-          @menu = Menu.new
-          @menu.menu1 = params['menus'][id.to_s][eat_time.to_s]["menu1"]
-          @menu.menu2 = params['menus'][id.to_s][eat_time.to_s]["menu2"]
-          @menu.date  = date
-          @menu.user_id = current_user.id
-          @menu.time = eat_time
-          if @menu.save
-            current_user.points += 1
-          else
-            suc = false
-            al << "\t" + date.to_s + 'の' + eat_time_to_s(eat_time) + 'は存在します<br/>'
-          end
-        end
-        date+=1
-      end
-      unless suc 
-        al << '</pre>'
-        flash[:alert]= al
-      end
-      redirect_to(menus_url)
+      set_menu_batch(date)
     end
+    redirect_to(menus_url)
   end
 
   # POST /menus
@@ -99,6 +78,18 @@ class MenusController < ApplicationController
   end
 
   private
+
+  def eat_time_to_s(eat_time)
+    case eat_time
+    when 1
+      '朝食'
+    when 2
+      '昼食'
+    when 3
+      '夕食'
+    end
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_menu
     @menu = Menu.find(params[:id])
@@ -108,14 +99,27 @@ class MenusController < ApplicationController
   def menu_params
     params.require(:menu).permit(:menu1, :menu2, :date, :time, :user_id)
   end
-  def eat_time_to_s (eat_time)
-    case eat_time
-    when 1
-      '朝食'
-    when 2
-      '昼食'
-    when 3
-      '夕食'
+
+  def set_menu_batch(date)
+    suc = true
+    al = '重複しているデータが存在します<br/><pre>'
+    (1..7).each do |id|
+      (1..3).each do |eat_time|
+        @menu = Menu.new
+        @menu.menu1 = params['menus'][id.to_s][eat_time.to_s]['menu1']
+        @menu.menu2 = params['menus'][id.to_s][eat_time.to_s]['menu2']
+        @menu.date  = date
+        @menu.user_id = current_user.id
+        @menu.time = eat_time
+        if @menu.save
+          current_user.points += 1
+        else
+          suc = false
+          al << "\t" + date.to_s + 'の' + eat_time_to_s(eat_time) + 'は存在します<br/>'
+        end
+        date += 1
+      end
     end
+    flash[:alert] = al << '</pre>' unless suc
   end
 end

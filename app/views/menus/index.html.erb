@@ -20,7 +20,7 @@
         <td><%= menu.menu1 %></td>
         <td><%= menu.menu2 %></td>
         <td><%= menu.date %></td>
-        <td><%= menu.time %></td>
+        <td><%= eat_time_to_s menu.time %></td>
         <td><%= menu.user.name %></td>
         <td><%= link_to 'Show', menu %></td>
         <td><%= link_to 'Edit', edit_menu_path(menu) %></td>
