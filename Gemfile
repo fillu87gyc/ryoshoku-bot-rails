@@ -67,3 +67,5 @@ gem 'rb-readline'
 gem 'jquery-turbolinks'
 gem 'jquery-rails'   # Rails5移行必ず導入する
 gem 'jquery-ui-rails' #　上と同様
+gem 'whenever'
+gem 'twitter'
