@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  menu1: MyString
+  menu2: MyString
+  date: 2019-08-01
+  time: 1
+  user: one
+
+two:
+  menu1: MyString
+  menu2: MyString
+  date: 2019-08-01
+  time: 1
+  user: two

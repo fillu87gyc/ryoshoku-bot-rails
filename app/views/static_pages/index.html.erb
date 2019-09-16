@@ -1,0 +1,6 @@
+<h1>りょうしょくぼっと</h1>
+<% if user_signed_in? %>
+  <%= current_user.name %>
+  <%= current_user.menus.count %>
+<% else %>
+<% end %>

@@ -1,3 +1,11 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'users/index'
+  get 'users/show'
+  get 'users/tweet'
+  get 'menus/batch' => 'menus#batch_registration'
+  post 'menus/batch' => 'menus#batch_create'
+  resources :menus
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  root 'static_pages#index'
+  devise_for :users
 end

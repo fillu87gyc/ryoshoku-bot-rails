@@ -1,0 +1,70 @@
+<h1>New batch_create</h1>
+
+<%= form_tag :url => '/menus/batch', :html => { :method => :post } do |f| %>
+  <div class="table-responsive">
+    <table class="table">
+      <tr>
+        <th>月曜日</th>
+        <th>火曜日</th>
+        <th>水曜日</th>
+        <th>木曜日</th>
+        <th>金曜日</th>
+        <th>土曜日</th>
+        <th>日曜日</th>
+      </tr>
+      <% cnt = 1 %>
+      <tr>
+        <% for m in 1..7 do %>
+          <td><input type="text" name="menus[<%= m %>][1][menu1]" tabindex="<%=cnt %>" value="1" /></td>
+          <% cnt+=6 %>
+        <% end %>
+      </tr>
+      <% cnt = 2 %>
+      <tr>
+        <% for m in 1..7 do %>
+          <td><input type="text" name="menus[<%= m %>][1][menu2]" tabindex="<%= cnt%>"  value="1" /></td>
+          <% cnt+=6 %>
+        <% end %>
+      </tr>
+      <% cnt = 3 %>
+      <tr>
+        <% for m in 1..7 do %>
+          <td><input type="text" name="menus[<%= m %>][2][menu1]" tabindex="<%= cnt%>" value="2" /></td>
+          <% cnt+=6 %>
+        <% end %>
+      </tr>
+      <% cnt = 4 %>
+      <tr>
+        <% for m in 1..7 do %>
+          <td><input type="text" name="menus[<%= m %>][2][menu2]" tabindex="<%= cnt%>" value="2" /></td>
+          <% cnt+=6 %>
+        <% end %>
+      </tr>
+      <% cnt = 5 %>
+      <tr>
+        <% for m in 1..7 do %>
+          <td><input type="text" name="menus[<%= m %>][3][menu1]" tabindex="<%= cnt%>" value="3" /></td>
+          <% cnt+=6 %>
+        <% end %>
+      </tr>
+      <% cnt = 6 %>
+      <tr>
+        <% for m in 1..7 do %>
+          <td><input type="text" name="menus[<%= m %>][3][menu2]" tabindex="<%= cnt%>" value="3" /></td>
+          <% cnt+=6 %>
+        <% end %>
+      </tr>
+    </table>
+    <div class="field">
+      <p>
+      月曜日の日付を入力 
+      <%= date_field_tag 'date','', use_month_numbers: true, start_year: 2019, :tabindex => '1000'  %>
+      </p>
+    </div>
+
+    <div class="actions">
+      <%= submit_tag %>
+    </div>
+  </div>
+<% end %>
+<%= link_to 'Back', menus_path %>
