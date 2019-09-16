@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def tweet
     set_twitter_client
     # tweet_value = 'めう！'
-    tweet_value = rand.to_s + 'てすとです'
+    tweet_value = rand.to_s + 'てすとですprod'
     @twitter.update(tweet_value)
     redirect_to users_index_path
   end
