@@ -14,43 +14,61 @@
       </tr>
       <% cnt = 1 %>
       <tr>
-        <% for m in 1..7 do %>
-          <td><input type="text" name="menus[<%= m %>][1][menu1]" tabindex="<%=cnt %>" value="1" /></td>
-          <% cnt+=6 %>
-        <% end %>
-      </tr>
-      <% cnt = 2 %>
+        <td><input type="text" name="menus[0][1][menu1]" tabindex="<%=cnt %>" value="オムレツ" /></td>
+        <% cnt += 6  %>
+        <td><input type="text" name="menus[0][1][menu1]" tabindex="<%=cnt %>" value="オムレツ" /></td>
+        <% cnt += 6  %>
+        <td><input type="text" name="menus[1][1][menu1]" tabindex="<%=cnt %>" value="鶏の柚子胡椒焼き" /></td>
+        <% cnt += 6  %>
+        <td><input type="text" name="menus[2][1][menu1]" tabindex="<%=cnt %>" value="ウインナーとブロッコリー炒め" /></td>
+        <% cnt += 6  %>
+        <td><input type="text" name="menus[4][1][menu1]" tabindex="<%=cnt %>" value="ベーコンエッグ" /></td>
+        <% cnt += 6  %>
+        <td><input type="text" name="menus[5][1][menu1]" tabindex="<%=cnt %>" value="豚肉と小松菜の和風炒め" /></td>
+        <% cnt += 6  %>
+        <td><input type="text" name="menus[6][1][menu1]" tabindex="<%=cnt %>" value="鯖(サバ)マスタード焼き" /></td>
+      <tr/>
+      <% cnt = 2  %>
       <tr>
-        <% for m in 1..7 do %>
-          <td><input type="text" name="menus[<%= m %>][1][menu2]" tabindex="<%= cnt%>"  value="1" /></td>
-          <% cnt+=6 %>
-        <% end %>
+        <td><input type="text" name="menus[6][1][menu2]" tabindex="<%=cnt %>" value="オムレツ" /></td>
+        <% cnt += 6  %>
+        <td><input type="text" name="menus[0][1][menu2]" tabindex="<%=cnt %>" value="ウインナー" /></td>
+        <% cnt += 6  %>
+        <td><input type="text" name="menus[1][1][menu2]" tabindex="<%=cnt %>" value="きんぴらごぼう" /></td>
+        <% cnt += 6  %>
+        <td><input type="text" name="menus[2][1][menu2]" tabindex="<%=cnt %>" value="ハッシュドポテト" /></td>
+        <% cnt += 6  %>
+        <td><input type="text" name="menus[3][1][menu2]" tabindex="<%=cnt %>" value="ミートボール" /></td>
+        <% cnt += 6  %>
+        <td><input type="text" name="menus[4][1][menu2]" tabindex="<%=cnt %>" value="五目玉子焼き" /></td>
+        <% cnt += 6  %>
+        <td><input type="text" name="menus[5][1][menu2]" tabindex="<%=cnt %>" value="ハムとポテトの中華炒め" /></td>
       </tr>
       <% cnt = 3 %>
       <tr>
         <% for m in 1..7 do %>
-          <td><input type="text" name="menus[<%= m %>][2][menu1]" tabindex="<%= cnt%>" value="2" /></td>
+          <td><input type="text" name="menus[<%= m %>][2][menu1]" tabindex="<%= cnt%>" value="" /></td>
           <% cnt+=6 %>
         <% end %>
       </tr>
       <% cnt = 4 %>
       <tr>
         <% for m in 1..7 do %>
-          <td><input type="text" name="menus[<%= m %>][2][menu2]" tabindex="<%= cnt%>" value="2" /></td>
+          <td><input type="text" name="menus[<%= m %>][2][menu2]" tabindex="<%= cnt%>" value="" /></td>
           <% cnt+=6 %>
         <% end %>
       </tr>
       <% cnt = 5 %>
       <tr>
         <% for m in 1..7 do %>
-          <td><input type="text" name="menus[<%= m %>][3][menu1]" tabindex="<%= cnt%>" value="3" /></td>
+          <td><input type="text" name="menus[<%= m %>][3][menu1]" tabindex="<%= cnt%>" value="" /></td>
           <% cnt+=6 %>
         <% end %>
       </tr>
       <% cnt = 6 %>
       <tr>
         <% for m in 1..7 do %>
-          <td><input type="text" name="menus[<%= m %>][3][menu2]" tabindex="<%= cnt%>" value="3" /></td>
+          <td><input type="text" name="menus[<%= m %>][3][menu2]" tabindex="<%= cnt%>" value="" /></td>
           <% cnt+=6 %>
         <% end %>
       </tr>
