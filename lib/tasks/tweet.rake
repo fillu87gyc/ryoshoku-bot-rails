@@ -3,7 +3,7 @@ namespace :tweet do
     set_twitter_client
     menu = Menu.find_by(date: Date.today.to_s, time: set_time)
     if menu == nil
-      tweet_value = 'まだデータが内容です...('+ Date.today.to_s +')'+set_time
+      tweet_value = 'まだデータが内容です...(' + Date.today.to_s + ')' + set_time
     else
       tweet_value = menu.menu1 + 'と' + menu.menu2 + 'です'
       @twitter.update(tweet_value)
