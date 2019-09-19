@@ -117,8 +117,8 @@ class MenusController < ApplicationController
           suc = false
           al << "\t" + date.to_s + 'の' + eat_time_to_s(eat_time) + 'は存在します<br/>'
         end
-        date += 1
       end
+      date += 1
     end
     flash[:alert] = al << '</pre>' unless suc
   end

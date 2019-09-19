@@ -2,5 +2,8 @@
 <% if user_signed_in? %>
   <%= current_user.name %>
   <%= current_user.menus.count %>
+  <a href="menus/batch">バッチ登録</a>
 <% else %>
+  <%  %>
+  <a href="users/sign_in">Login</a>
 <% end %>

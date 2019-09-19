@@ -1,8 +1,8 @@
 namespace :tweet do
-  desc 'random_tweet'
-  task :tweet do
+  task :tweet => :environment do
     set_twitter_client
-    tweet_value = rand.to_s + 'てすとです'
+    menu = Menu.find_by(date: Date.today.to_s, time: set_time)
+    tweet_value = menu.menu1 + 'と' + menu.menu2 + 'です'
     @twitter.update(tweet_value)
   end
 end
@@ -14,4 +14,16 @@ def set_twitter_client
     config.access_token        = Rails.application.credentials[:ACCESS_TOKEN]
     config.access_token_secret = Rails.application.credentials[:ACCESS_TOKEN_SECRET]
   end
+end
+
+def set_time
+  h = Time.now.hour
+  if (h<8) 
+    eat_time = 1
+  elsif (h<14)
+    eat_time = 2
+  else 
+    eat_time = 3
+  end
+  eat_time
 end
