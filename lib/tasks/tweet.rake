@@ -2,8 +2,12 @@ namespace :tweet do
   task :tweet => :environment do
     set_twitter_client
     menu = Menu.find_by(date: Date.today.to_s, time: set_time)
-    tweet_value = menu.menu1 + 'と' + menu.menu2 + 'です'
-    @twitter.update(tweet_value)
+    if menu == nil
+      tweet_value = 'まだデータが内容です...('+ Date.today.to_s +')'+set_time
+    else
+      tweet_value = menu.menu1 + 'と' + menu.menu2 + 'です'
+      @twitter.update(tweet_value)
+    end
   end
 end
 
@@ -18,11 +22,11 @@ end
 
 def set_time
   h = Time.now.hour
-  if (h<8) 
+  if (h<8)
     eat_time = 1
   elsif (h<14)
     eat_time = 2
-  else 
+  else
     eat_time = 3
   end
   eat_time
